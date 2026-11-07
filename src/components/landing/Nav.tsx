@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Flame } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -7,11 +7,12 @@ import { cn } from "@/lib/utils";
 type NavLink = { label: string; href: string };
 
 const defaultLinks: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "IT Solutions", href: "/it-solutions" },
-  { label: "Services", href: "#expertise" },
-  { label: "Insights", href: "#insights" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#home" },
+  { label: "Products", href: "#products" },
+  { label: "Solutions", href: "#solution" },
+  { label: "Features", href: "#features" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Register", href: "#register" },
 ];
 
 function NavItem({
@@ -23,7 +24,7 @@ function NavItem({
   className: string;
   onClick?: () => void;
 }) {
-  if (link.href.startsWith("/")) {
+  if (link.href.startsWith("/") && !link.href.startsWith("/#")) {
     return (
       <Link to={link.href} className={className} onClick={onClick}>
         {link.label}
@@ -39,8 +40,8 @@ function NavItem({
 
 export function Nav({
   links = defaultLinks,
-  tagline = "Accounting & Tax Consultancy",
-  cta = { label: "Book Consultation", href: "#contact" },
+  tagline = "LPG Agency Management",
+  cta = { label: "Register Agency", href: "#register" },
 }: {
   links?: NavLink[];
   tagline?: string;
@@ -67,15 +68,16 @@ export function Nav({
     >
       <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5">
-          <span
-            className="flex size-9 items-center justify-center rounded-xl text-primary-foreground"
-            style={{ backgroundImage: "var(--gradient-brand)" }}
-          >
-            <Flame className="size-4.5" />
-          </span>
+          <img
+            src="/logo-mark.png"
+            alt="LPG Mitra"
+            width={36}
+            height={36}
+            className="size-9 object-contain"
+          />
           <span className="flex flex-col leading-none">
-            <span className="text-[15px] font-extrabold tracking-tight text-foreground">
-              Youngest Minds
+            <span className="text-[16px] font-extrabold tracking-tight text-foreground">
+              LPG Mitra
             </span>
             <span className="text-[11px] font-medium text-muted-foreground">{tagline}</span>
           </span>
@@ -93,7 +95,7 @@ export function Nav({
 
         <div className="hidden lg:block">
           <Button variant="brand" size="lg" asChild>
-            {cta.href.startsWith("/") ? (
+            {cta.href.startsWith("/") && !cta.href.startsWith("/#") ? (
               <Link to={cta.href}>{cta.label}</Link>
             ) : (
               <a href={cta.href}>{cta.label}</a>
@@ -123,7 +125,7 @@ export function Nav({
             ))}
           </div>
           <Button variant="brand" size="lg" className="mt-4 w-full" asChild>
-            {cta.href.startsWith("/") ? (
+            {cta.href.startsWith("/") && !cta.href.startsWith("/#") ? (
               <Link to={cta.href} onClick={() => setOpen(false)}>
                 {cta.label}
               </Link>

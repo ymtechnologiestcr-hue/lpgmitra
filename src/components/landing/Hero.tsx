@@ -42,7 +42,7 @@ export function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <span className="inline-flex animate-rise items-center gap-2 rounded-full border border-border bg-card/70 px-4 py-1.5 text-xs font-semibold text-muted-foreground backdrop-blur">
             <span className="size-1.5 rounded-full bg-primary" />
-            Built for LPG distributors by Youngest Minds
+            Built for LPG distributors by LPG Mitra
           </span>
 
           <h1 className="mt-7 animate-rise text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
@@ -75,6 +75,8 @@ export function Hero() {
               alt="Owner dashboard showing revenue, cylinder inventory, deliveries and cash collection for an LPG agency"
               width={1600}
               height={1008}
+              fetchPriority="high"
+              decoding="async"
               className="w-full rounded-[16px]"
             />
           </div>

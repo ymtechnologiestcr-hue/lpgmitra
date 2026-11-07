@@ -751,11 +751,13 @@ export function Register() {
                     size="xl"
                     className="w-full sm:col-span-2"
                     onClick={() => {
-                      const element = document.getElementById("contact");
+                      const element = document.getElementById("register");
                       if (element) {
                         element.scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        window.location.href = "/#contact";
+                      }
+                      const firstInput = document.getElementById("agency_name");
+                      if (firstInput) {
+                        firstInput.focus();
                       }
                     }}
                   >

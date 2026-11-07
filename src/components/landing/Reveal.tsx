@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Reveal({
   children,
@@ -11,33 +15,40 @@ export function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setShown(true);
-          io.disconnect();
-        }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const animation = gsap.fromTo(
+      el,
+      { autoAlpha: 0, y: 24 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.75,
+        delay: delay / 1000,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true,
+        },
       },
-      { threshold: 0.12 },
     );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+
+    return () => {
+      animation.scrollTrigger?.kill();
+      animation.kill();
+      gsap.set(el, { clearProps: "all" });
+    };
+  }, [delay]);
 
   return (
     <div
       ref={ref}
-      className={cn(
-        "transition-all duration-700 ease-out",
-        shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-        className,
-      )}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={className}
     >
       {children}
     </div>

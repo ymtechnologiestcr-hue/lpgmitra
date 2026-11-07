@@ -14,6 +14,13 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.pathname.startsWith("/it-solutions")) {
+      router.navigate({ to: "/" });
+    }
+  }, [router]);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -78,22 +85,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "LPG Agency Management System | Youngest Minds" },
+      { title: "LPG Agency Management System | LPG Mitra" },
       {
         name: "description",
         content:
-          "Cloud-based LPG Agency Management System by Youngest Minds. Six connected apps for deliveries, stock, cash and analytics.",
+          "Cloud-based LPG Agency Management System by LPG Mitra. Six connected apps for deliveries, stock, cash and analytics.",
       },
-      { name: "author", content: "Youngest Minds" },
-      { property: "og:title", content: "LPG Agency Management System | Youngest Minds" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "author", content: "LPG Mitra" },
+      { property: "og:title", content: "LPG Agency Management System | LPG Mitra" },
       {
         property: "og:description",
         content:
-          "Cloud-based LPG Agency Management System by Youngest Minds. Six connected apps for deliveries, stock, cash and analytics.",
+          "Cloud-based LPG Agency Management System by LPG Mitra. Six connected apps for deliveries, stock, cash and analytics.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "LPG Mitra" },
+      { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -107,6 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/logo-mark.png" },
     ],
   }),
   shellComponent: RootShell,

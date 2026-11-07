@@ -16,13 +16,13 @@ export function PoweredBy() {
         <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
           <Reveal>
             <span className="inline-flex items-center rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Powered by Youngest Minds
+              Powered by LPG Mitra
             </span>
             <h2 className="mt-5 text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">
-              Built by <span className="gradient-text">Youngest Minds</span>
+              Built by <span className="gradient-text">LPG Mitra</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Youngest Minds develops enterprise software solutions that help businesses digitize
+              LPG Mitra develops enterprise software solutions that help businesses digitize
               operations and improve efficiency. Our LPG Agency Management System is purpose-built
               for gas distributors to streamline operations, increase visibility, improve
               productivity, and simplify everyday management.
